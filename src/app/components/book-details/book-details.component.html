@@ -1,0 +1,65 @@
+<div style="width: 400px; margin: auto;">
+  <div *ngIf="currentBook" class="edit-form">
+    <h4>Book</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentBook.title"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input
+          type="text"
+          class="form-control"
+          id="author"
+          [(ngModel)]="currentBook.author"
+          name="author"
+        />
+      </div>
+
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{ currentBook.reserved ? "Reserved" : "Available" }}
+      </div>
+    </form>
+
+    <button
+      class="badge badge-primary mr-2"
+      *ngIf="currentBook.reserved"
+      (click)="updateReserved(false)"
+    >
+      Return
+    </button>
+    <button
+      *ngIf="!currentBook.reserved"
+      class="badge badge-primary mr-2"
+      (click)="updateReserved(true)"
+    >
+      Reserve
+    </button>
+
+    <button class="badge badge-danger mr-2" (click)="deleteBook()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success"
+      (click)="updateBook()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentBook">
+    <br />
+    <p>Cannot access this Book...</p>
+  </div>
+</div>
