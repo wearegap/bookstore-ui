@@ -1,0 +1,23 @@
+# The following variables should be set as "Masked variables":
+#   AWS_ACCESS_KEY_ID
+#   AWS_SECRET_ACCESS_KEY
+#   S3_BUCKET_NAME
+image:
+  name: amazon/aws-cli
+variables:
+  zippedRepo: "webapp.zip"
+
+stages:
+  - upload-src
+
+AWS Upload:
+  stage: upload-src
+  tags:
+    - docker
+  only:
+    - master
+  script:
+    |
+    yum install -y zip
+    zip -q -r $zippedRepo *
+    aws s3 cp $zippedRepo s3://$S3_BUCKET_NAME
