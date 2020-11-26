@@ -4,6 +4,7 @@
 #   S3_BUCKET_NAME
 image:
   name: amazon/aws-cli
+  entrypoint: [""]
 variables:
   zippedRepo: "webapp.zip"
 
