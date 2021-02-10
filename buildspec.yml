@@ -11,5 +11,6 @@ phases:
         - npm run build -- --prod
 artifacts:
     files:
-        - '**/*'
-    base-directory: 'dist/bookstore'
+        - dist/bookstore/**/*
+        - scripts/before-install.sh
+        - appspec.yml
